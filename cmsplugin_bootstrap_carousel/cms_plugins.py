@@ -13,7 +13,7 @@ class CarouselForm(ModelForm):
     
     def clean_domid(self):
         data = self.cleaned_data['domid']
-        if not re.match(r'[a-zA-Z_]\w*', data):
+        if not re.match(r'^[a-zA-Z_]\w*$', data):
             raise ValidationError(_("The name must be a single word beginning with a letter"))
         return data
 
