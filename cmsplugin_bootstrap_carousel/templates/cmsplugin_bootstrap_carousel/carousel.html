@@ -4,16 +4,29 @@
 $(document).ready(function(){
     $("#{{ instance.domid }}").carousel({interval: {{ instance.interval }}});
 });
+
+$(window).load(function() {
+    var carousel_items = $("#{{ instance.domid }}");
+    var height = 0;
+    carousel_items.each(function () {
+        height = Math.max(height, $(this).height());
+    });
+    carousel_items.height(height);
+});
 </script>
 {% endaddtoblock %}
 <div id="{{ instance.domid }}" class="carousel slide">
   <div class="carousel-inner">{% for item in instance.carouselitem_set.all %}
     <div class="{% if forloop.first %}active {% endif %}item">
+    {% if item.image %}
       <img alt="" src="{{ item.image.url }}">
       <div class="carousel-caption">
+    {% endif %}
         <h4>{{ item.caption_title }}</h4>
         <p>{{ item.caption_content }}</p>
+    {% if item.image %}
       </div>
+    {% endif %}
     </div>{% endfor %}
   </div>
   <!-- Carousel nav -->
