@@ -19,5 +19,5 @@ class Carousel(CMSPlugin):
 class CarouselItem(models.Model):
     carousel = models.ForeignKey(Carousel)
     caption_title = models.CharField(max_length=100, blank=True, null=True)
-    caption_content = models.TextField()
+    caption_content = models.TextField(blank=True, null=True)
     image = FilerImageField(blank=True, null=True)
